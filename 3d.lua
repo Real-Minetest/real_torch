@@ -47,7 +47,11 @@ minetest.register_node("real_torch:torch", {
 		itemstack:set_name("real_torch:torch")
 
 		return itemstack
-	end
+	end,
+	on_ignite = function(pos, igniter)
+		local nod = minetest.get_node(pos)
+		minetest.set_node(pos, {name = "default:torch", param2 = nod.param2})
+	end,
 })
 
 
@@ -70,6 +74,10 @@ minetest.register_node("real_torch:torch_wall", {
 		wall_side = {-1/2, -1/2, -1/8, -1/8, 1/8, 1/8},
 	},
 	sounds = default.node_sound_wood_defaults(),
+	on_ignite = function(pos, igniter)
+		local nod = minetest.get_node(pos)
+		minetest.set_node(pos, {name = "default:torch_wall", param2 = nod.param2})
+	end,
 })
 
 
@@ -92,6 +100,10 @@ minetest.register_node("real_torch:torch_ceiling", {
 		wall_top = {-1/8, -1/16, -5/16, 1/8, 1/2, 1/8},
 	},
 	sounds = default.node_sound_wood_defaults(),
+	on_ignite = function(pos, igniter)
+		local nod = minetest.get_node(pos)
+		minetest.set_node(pos, {name = "default:torch_ceiling", param2 = nod.param2})
+	end,
 })
 
 
@@ -106,7 +118,8 @@ minetest.override_item("default:torch", {
 	end,
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(480, 600))
+		minetest.get_node_timer(pos):start(
+			math.random(real_torch.min_duration, real_torch.max_duration))
 	end,
 })
 
@@ -121,7 +134,8 @@ minetest.override_item("default:torch_wall", {
 	end,
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(480, 600))
+		minetest.get_node_timer(pos):start(
+			math.random(real_torch.min_duration, real_torch.max_duration))
 	end,
 })
 
@@ -136,6 +150,7 @@ minetest.override_item("default:torch_ceiling", {
 	end,
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(480, 600))
+		minetest.get_node_timer(pos):start(
+			math.random(real_torch.min_duration, real_torch.max_duration))
 	end,
 })

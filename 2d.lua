@@ -39,6 +39,7 @@ minetest.override_item("default:torch", {
 	end,
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(480, 600))
+		minetest.get_node_timer(pos):start(
+			math.random(real_torch.min_duration, real_torch.max_duration))
 	end,
 })
