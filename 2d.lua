@@ -13,6 +13,7 @@ minetest.register_node("real_torch:torch", {
 	wield_image = "real_torch_on_floor.png",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
+	light_source = 3,
 	sunlight_propagates = true,
 	is_ground_content = false,
 	walkable = false,
