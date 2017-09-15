@@ -3,7 +3,7 @@ Real Torch by TenPlus1
 This mod changes minetest torches so that they have a life of 8-10 minutes which
 is configurable using the torch_min_duration and torch_max_duration settings.
 
-- 2x coal lumps can be crafted into 10x coal powder
+- 2x coal lumps can be crafted into 12x coal powder
 - coal powder and an unlit torch can be crafted into a lit torch again
 - punching an unlit torch with coal powder relights it
 - punching an unlit torch with flint & steel relights it

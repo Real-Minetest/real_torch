@@ -72,13 +72,13 @@ minetest.register_craftitem("real_torch:coal_powder", {
 minetest.register_craft({
 	type = "fuel",
 	recipe = "real_torch:coal_powder",
-	burntime = 10,
+	burntime = 8,
 })
 
--- 2x coal lumps = 8x coal powder
+-- 2x coal lumps = 12x coal powder
 minetest.register_craft({
 	type = "shapeless",
-	output = "real_torch:coal_powder 10",
+	output = "real_torch:coal_powder 12",
 	recipe = {"default:coal_lump", "default:coal_lump"},
 })
 
