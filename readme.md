@@ -23,3 +23,4 @@ Changelog:
 - 0.5 - 2x coal lumps give 10x coal dust, also fixed check for ethereal mod
 - 0.6 - Burnout and extinguish sounds added by tacotexmex :)
 - 0.7 - Torches can be re-lit using flint & steel and gunpowder, settings added
+- 0.8 - Updated to newer functions, requires Minetest 0.4.16 to run

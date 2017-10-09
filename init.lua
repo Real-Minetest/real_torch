@@ -4,8 +4,8 @@
 real_torch = {}
 
 -- check for timer settings or use defaults
-real_torch.min_duration = tonumber(minetest.setting_get("torch_min_duration")) or 480
-real_torch.max_duration = tonumber(minetest.setting_get("torch_min_duration")) or 600
+real_torch.min_duration = tonumber(minetest.settings:get("torch_min_duration")) or 480
+real_torch.max_duration = tonumber(minetest.settings:get("torch_min_duration")) or 600
 
 
 -- check which torch(es) are available in minetest version
@@ -28,6 +28,13 @@ minetest.register_lbm({
 		end
 	end
 })
+
+
+-- creative check
+local creative_mode_cache = minetest.settings:get_bool("creative_mode")
+function is_creative(name)
+	return creative_mode_cache or minetest.check_player_privs(name, {creative = true})
+end
 
 
 -- coal powder
@@ -61,7 +68,10 @@ minetest.register_craftitem("real_torch:coal_powder", {
 
 		if rep then
 			minetest.set_node(pos, {name = nod.name, param2 = nod.param2})
-			itemstack:take_item()
+
+			if not is_creative(user:get_player_name()) then
+				itemstack:take_item()
+			end
 		end
 
 		return itemstack
@@ -213,9 +223,15 @@ minetest.override_item("tnt:gunpowder", {
 		end
 
 		if rep then
+
 			minetest.set_node(pos, {name = nod.name, param2 = nod.param2})
+
 			add_effects(pos, 1)
-			itemstack:take_item()
+
+			if not is_creative(user:get_player_name()) then
+				itemstack:take_item()
+			end
+
 			return itemstack
 		end
 
@@ -227,7 +243,9 @@ minetest.override_item("tnt:gunpowder", {
 
 			add_effects(pos, 1)
 
-			itemstack:take_item()
+			if not is_creative(user:get_player_name()) then
+				itemstack:take_item()
+			end
 		end
 
 		return itemstack
